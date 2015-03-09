@@ -1,0 +1,157 @@
+@include respond-to(mobile) {
+
+	html.js body{
+		min-width: 0;
+		padding: emRhythm(10) emRhythm(2) emRhythm(2) emRhythm(2);
+	}
+
+	.main__section{
+
+		&.main__section--mobile{
+			display: block;
+		}
+
+		&.main__section--archive{
+			display: none;
+		}
+
+		&.main__section--content{
+			max-width: none;
+			top: 0;
+			padding: 0;
+			width: 100%;
+
+			.filter{
+				display: none;
+			}
+
+			.main__section__header{
+				display: none;
+			}
+
+			.main__section__body__content{
+				margin-left: 0;
+				margin-top: 0 !important;
+
+				.article,
+				.photo{
+					opacity: 1;
+					width: 100%;
+					margin-bottom: 0;
+					margin-top: emRhythm(8);
+
+					&:first-child{
+						margin-top: 0;
+					}
+				}
+
+				.photo{
+					img{
+						max-height: none;
+						width: 100%;
+					}
+				}
+			}
+
+		}
+
+		&.main__section--information{
+			display: block;
+			width: 100%;
+			z-index: 0;
+			margin-bottom: emRhythm(8);
+
+			.main__section__header{
+				display: none;
+			}
+
+			.text{
+				margin-left: 0 !important;
+				width: 100%;
+				transition: none;
+
+				.text__close{
+					display: none;
+				}
+
+				.text__header{
+					> h1{
+						visibility: visible;
+						margin-bottom: emRhythm(4);
+					}
+				}
+			}
+		}
+
+	}
+
+}
+
+@include respond-to(small) {
+
+	.main__section--information{
+		width: 8% !important;
+	}
+
+	.main__section--archive{
+		width: 15% !important;
+		min-width: 2 * emRhythm($archive-item-em-size);
+		margin-right: 10px !important;
+
+		.archive{
+			width: (2 * emRhythm($archive-item-em-size)) + emRhythm($archive-item-em-margin);
+		}
+
+		&.hide{
+			.archive{
+				margin-left: -60px !important;
+
+				&:hover{
+					// BOB::20150116, just a single colomn of items so no left margin, compensating for that
+					margin-left: (-60px + $archive-rollout-teaser + 15) !important;
+				}
+			}
+		}
+	}
+
+	.article{
+		> .article__visual{
+			width: 35%  !important;
+			margin-left: emRhythm(2) !important;
+		}
+	}
+}
+
+@include respond-to(medium) {
+
+	.main__section--information{
+		width: 10% !important;
+	}
+
+	.main__section--archive{
+		width: 20% !important;
+		min-width: (3 * emRhythm($archive-item-em-size));
+
+		.archive{
+			width: (3 * emRhythm($archive-item-em-size)) + emRhythm($archive-item-em-margin);
+		}
+
+		&.hide{
+			.archive{
+				margin-left: -150px !important;
+
+				&:hover{
+					margin-left: (-150px + $archive-rollout-teaser) !important;
+				}
+			}
+		}
+	}
+}
+
+// Default
+@include respond-to(large) {
+
+}
+
+@include respond-to(super-large) {
+}

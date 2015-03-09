@@ -1,0 +1,134 @@
+@mixin link(){
+
+  a{
+    text-decoration: none;
+    text-transform: capitalize;
+    color: inherit;
+    // transition: color 0.05s;
+
+    &:hover{
+      color: $active-link-color;
+    }
+  }
+
+	&[class$="active"]{
+		color: $active-link-color;
+	}
+}
+
+@mixin text-link($color: $text-color-dark){
+  a[href]{
+    text-decoration: none;
+    color: $color;
+    position: relative;
+    display: inline-block;
+
+    // http://codepen.io/acusti/pen/gbabKQ
+    // background-image: linear-gradient(rgba(#000, 0.25) 0%, #000 100%);
+    // background-repeat: repeat-x;
+    // background-size: 1px 1px;
+    // background-position: 0 78%;
+    // text-shadow: 3px 0 #83afb0, 2px 0 #83afb0, 1px 0 #83afb0, -1px 0 #83afb0, -2px 0 #83afb0, -3px 0 #83afb0;
+
+    &:before{
+      content: '';
+      display: inline-block;
+      position: absolute;
+      bottom: 3px;
+      left: 0;
+      right: 0;
+      border-bottom: thin solid $color;
+    }
+  }
+}
+
+@mixin box-padding($side_multiplier: 1){
+  padding: emRhythm(1) emRhythm($side_multiplier);
+}
+
+@mixin box-style($side_multiplier: 1){
+  @include box-padding($side_multiplier);
+}
+
+// http://thesassway.com/intermediate/responsive-web-design-in-sass-using-media-queries-in-sass-32
+@mixin tweak-points($point) {
+
+  @if $point == small {
+    @media (max-width: 1600px) { @content; }
+  }
+
+}
+
+
+
+// ----
+// http://www.sitepoint.com/managing-responsive-breakpoints-sass/
+// http://sassmeister.com/gist/0614ac3971ae82925ef4
+// ----
+@mixin respond-to($name, $push: false) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $name) {
+    // Prints a media query based on the value
+    @media #{map-get($breakpoints, $name)} {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  // But $push is defined
+  @else if $push != false {
+    // Add the new breakpoint to the map
+    $breakpoints: map-merge($breakpoints, ($name: $push)) !global;
+    // And re-call the mixin normally
+    @include respond-to($name) {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  // And there is no push
+  @else {
+    // Just warn the user
+    @warn "Unfortunately, no value could be retrieved from `#{$name}`. "
+        + "Please make sure it is defined in `$breakpoints` map. "
+        + "Or pass the media query as a second parameter to add it to the map.";
+  }
+}
+
+@mixin vertical-dash(){
+  &:after{
+    content: '';
+    display: inline-block;
+    height: emRhythm(3);
+    border-right: thin solid white;
+    vertical-align: middle;
+    margin: 0 3px;
+  }
+
+  &:last-child{
+    &:after{
+      display: none;
+    }
+  }
+}
+
+@mixin horizontal-dash($bottom: - emRhythm(0.5)){
+  position: relative;
+  &:before{
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: $bottom;
+    left: 0;
+    right: 0;
+    border-bottom: thin solid white;
+  }
+}
+
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

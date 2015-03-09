@@ -1,0 +1,35 @@
+// Base
+$background-color:					#B4B3AC;
+$text-color:								white;
+$text-color-dark:						black;
+$active-link-color:					black;
+$transition-duration:				0.4s;
+
+// https://github.com/ianrose/typesettings
+$base-vertical-unit: 				5px;
+$base-line-multi: 					4;
+$base-font-size: 						11px;
+$ms-ratio: 									1.2;
+
+// Modules
+$archive-hide-stickout:			25px;
+$archive-rollout-teaser:		45px;
+$archive-item-em-size:			15;
+$archive-item-em-margin:		3;
+
+// Responsive
+// ----
+// http://www.sitepoint.com/managing-responsive-breakpoints-sass/
+// http://sassmeister.com/gist/0614ac3971ae82925ef4
+//
+// Using em's in case the page get's zoomed in
+// ----
+
+$screen:       "only screen and";
+$breakpoints: (
+  'mobile'  		: '#{$screen} ( max-width: 320px )',
+  'small'  			: '#{$screen} ( min-width: 321px )  and ( max-width: 69.999em )',
+  'medium' 			: '#{$screen} ( min-width: 70em ) and ( max-width: 84.999em )',
+  'large'  			: '#{$screen} ( min-width: 85em ) and ( max-width: 99.999em )',
+  'super-large' : '#{$screen} ( min-width: 100em )'
+);

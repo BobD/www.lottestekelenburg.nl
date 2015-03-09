@@ -1,0 +1,36 @@
+.main__section{
+
+	&.main__section--archive{
+		float: left;
+		text-align: right;
+		margin-right: 25px;
+		width: 25%;
+
+		.archive{
+			transition: margin-right $transition-duration, opacity $transition-duration;
+
+			.archive__list{
+				margin-left: -50px;
+			}
+		}
+
+		&.no-effect{
+			transition: none;
+		}
+
+		&.hide{
+
+			.archive{
+				margin-right: 88%;
+				opacity: 0.6;
+			}
+
+			.archive{
+				&:hover{
+					margin-right: 0;
+					opacity: 1;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,30 @@
+.text{
+	@include box-style();
+
+	background-color: white;
+	display: inline-block;
+	color: $text-color-dark;
+	padding: emRhythm(1) emRhythm(2);
+
+	.text__close{
+		float: right;
+		cursor: pointer;
+	}
+
+	.text__header{
+		text-align: left;
+
+		> h1{
+			@include setType(4, $ms-up1);
+			visibility: hidden;
+		}
+	}
+
+	.text__body{
+	}
+
+	.text__footer{
+
+	}
+
+}

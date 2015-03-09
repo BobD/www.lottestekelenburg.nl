@@ -1,0 +1,14 @@
+<section class='main__section main__section--archive'>
+
+    <header class='main__section__header'>
+        {{#with filters.archive}}
+            {{> helpers/filter url=../sections.archive.url}}
+        {{/with}}
+    </header>
+
+
+    {{#with archive}}
+        {{> helpers/notes/archive url=../sections.archive.url}}
+    {{/with}}
+
+</section>

@@ -1,0 +1,10 @@
+<nav class='filter'>
+	<div class='filter__header'>{{title}}</div>
+	<ul class='filter__list'>
+		{{#each items}}
+			<li class='filter__list__item {{state}}' data-filters='{{filters}}'>
+				<a class='filter__list__item__link' href='#/{{../url}}/{{filters}}'>{{label}}</a>
+			</li>
+		{{/each}}
+	</ul>
+</nav>

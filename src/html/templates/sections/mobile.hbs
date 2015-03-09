@@ -1,0 +1,37 @@
+<section class='main__section main__section--mobile'>
+
+    <header class='main__section__header'>
+        {{> helpers/hamburger}}
+        <h1>Lotte Stekelenburg</h1>
+    </header>
+
+    <div class='main__section__body'>
+
+        <div>
+
+            <h2>Notes</h2>
+
+            <ul>
+                <li>
+                    <a href="#/{{sections.archive.url}}/recent">Recent</a>
+                </li>
+                <li>
+                    <a href="#/{{sections.archive.url}}/before">Before</a>
+                </li>
+
+            </u>
+
+        </div>
+
+        <div>
+
+            <h2>Photography</h2>
+
+            {{#with albums}}
+                {{> helpers/mobile-albums}}
+            {{/with}}
+
+        </div>
+    </div>
+
+</section>

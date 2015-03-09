@@ -1,0 +1,23 @@
+{
+  "name": "lotte-stekelenburg",
+  "version": "0.0.0",
+  "authors": [
+    "Bob Donderwinkel <b.donderwinkel@gmail.com>"
+  ],
+  "description": "www.lottestekelenburg.nl prototype",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1"
+  },
+  "devDependencies": {
+    "underscore": "~1.7.0"
+  }
+}

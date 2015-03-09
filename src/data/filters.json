@@ -1,0 +1,25 @@
+{
+	"archive": {
+		"title": "notes",
+		"type": "notes",
+		"items": [
+			{"label": "recent", "filters": "recent", "state": "active"},
+			{"label": "before", "filters": "before"}
+		]
+	},
+	"content": {
+		"title": "photography",
+		"type": "photography",
+		"items": [
+			{"label": "commissioned", "filters": "commissioned"},
+			{"label": "portrait", "filters": "portrait"},
+			{"label": "self", "filters": "self"}
+		]
+	},
+	"info": {
+		"title": "lotte stekelenburg",
+		"items": [
+			{"label": "information", "filters": "information", "state": "active"}
+		]
+	}
+}

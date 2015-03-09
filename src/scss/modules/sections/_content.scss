@@ -1,0 +1,92 @@
+$main-content-nav-width: 150px;
+
+.main__section{
+
+	&.main__section--content{
+		width: auto;
+		display: block;
+		overflow: hidden;
+
+		// compensate for the .main padding so the .main__section__body__content__scroll is not clipped
+		top: - emRhythm(4);
+		padding-top: emRhythm(4);
+
+		.main__section__header{
+			margin-left: $main-content-nav-width;
+			position: relative;
+			z-index: 1;
+		}
+
+		.main__section__header__nav{
+			float: left;
+			margin-top: emRhythm(5);
+			margin-left: -$main-content-nav-width;
+			display: none;
+
+			.list{
+				margin-bottom: emRhythm(6);
+
+				.js & > *[data-filter]{
+					display: none;
+				}
+
+				& > *[data-filter].show{
+					display: block;
+				}
+
+				&:last-child{
+					margin-bottom: 0;
+				}
+
+				li{
+					display: block;
+					@include link();
+					> a{
+						@include setLeading($base-line-multi);
+						display: block;
+					}
+				}
+			}
+		}
+
+		&[data-filters='photography']{
+			.main__section__header__nav{
+				display: block;
+			}
+		}
+
+		.main__section__body__content{
+			position: relative;
+			width: auto;
+			overflow: hidden;
+			margin-left: $main-content-nav-width;
+
+			// hackeroo..
+			transform: translateZ(0);
+		}
+
+		.main__section__body__content__scroll{
+
+			.section{
+
+				&[data-section="intro"]{
+
+					.photo{
+						img{
+							max-height: 600px;
+						}
+					}
+				}
+
+				&.hide{
+					display: none;
+				}
+
+				> article{
+					margin-bottom: emRhythm(15.5);
+				}
+			}
+		}
+	}
+
+}

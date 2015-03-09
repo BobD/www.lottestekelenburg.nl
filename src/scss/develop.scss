@@ -1,0 +1,36 @@
+@import "helpers/variables";
+@import "helpers/mixins";
+
+//  A collection of development only styles, these will be generated dynamically with the backend on production
+
+%themes{
+
+	&.note_category-1{
+		background-color: #83afb0 !important;
+	}
+
+	&.note_category-2{
+		background-color: #c38f91 !important;
+	}
+	
+	&.note_category-3{
+		background-color: #88af60 !important;
+	}
+
+	&.note_category-4{
+		background-color: #cdcc34 !important;
+	}
+
+	&.note_category-5{
+		background-color: #a08fa2 !important;
+	}
+
+	&.note_category-6{
+		background-color: #cdcc34 !important;
+	}
+}
+
+.article,
+.archive__list__item{
+	@extend %themes;
+}

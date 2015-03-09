@@ -1,0 +1,6 @@
+# Don’t commit the following directories
+build/
+dist/
+bower_components/
+node_modules/
+.sass-cache/

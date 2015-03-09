@@ -1,0 +1,58 @@
+<section class='main__section main__section--content'>
+
+    <header class='main__section__header'>
+
+        {{#with filters.content}}
+            {{> helpers/filter url=../sections.photography.url}}
+        {{/with}}
+
+        <div class='main__section__header__nav'>
+
+            <ul class='list albums'>
+                {{#each albums}}
+                    <div data-filter='{{@key}}'>
+                    {{#each this}}
+                        <li data-album='{{id}}'><a href='#/{{../../sections.photography.url}}/{{@key}}/{{id}}'>{{title}}</a></li>
+                    {{/each}}
+                    </div>
+                {{/each}}
+            </ul>
+
+            <ul class='list images'>
+            </ul>
+
+        </div>
+
+    </header>
+
+    <div class='main__section__body'>
+
+        <div class='main__section__body__content'>
+
+            <div class='main__section__body__content__scroll'>
+
+                <section data-section='intro' class='section'>
+
+                {{#each photos.home}}
+                    {{> helpers/photo href="#/{{sections.archive.url}}/recent/on-weeds"}}
+                {{/each}}
+
+                </section>
+
+                <section data-section='articles' class='section hide'>
+                {{#each archive.items}}
+                    {{> helpers/notes/article}}
+                {{/each}}
+                </section>
+
+                <section data-section='photography' class='section hide' data-album=''>
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

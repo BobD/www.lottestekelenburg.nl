@@ -1,0 +1,71 @@
+.js{
+
+	.article{
+		opacity: 0.4;
+		cursor: pointer;
+		display: none;
+		transition: opacity $transition-duration, top $transition-duration;
+
+		&:hover,
+		&.active{
+			opacity: 1;
+			cursor: default;
+		}
+
+		&:not(.active):hover{
+			cursor: pointer;
+		}
+	}
+}
+
+.article{
+	@include box-style(2);
+
+	padding-bottom: emRhythm(2);
+	text-align: left;
+	background-color: white;
+	color: $text-color-dark;
+	overflow: hidden;
+	margin-right: 6px;
+	position: relative;
+	max-width: 80em;
+	top: 0;
+	max-height: 500px;
+
+	.article__header{
+		margin-bottom: emRhythm($base-line-multi);
+		color: white;
+
+		> .article__header__title{
+			@include setType($base-line-multi, $ms-up1);
+		}
+
+		> .article__header__date{
+			@include setType($base-line-multi, $ms-down1);
+		}
+	}
+
+	.article__body{
+		position: relative;
+		width: auto;
+		max-height: 360px;
+		overflow: auto;
+		display: block;
+
+		@include text-link();
+	}
+
+	> .article__visual{
+		float: right;
+		width: 45%;
+		margin: emRhythm(4) emRhythm(1) emRhythm(2) emRhythm(8);
+
+		> .article__visual__image{
+			width: 100%;
+		}
+	}
+
+	.article__footer{
+
+	}
+}

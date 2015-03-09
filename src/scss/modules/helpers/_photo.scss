@@ -1,0 +1,26 @@
+.photo{
+
+	> a{
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.picture{
+		display: block;
+		position: relative;
+
+		.picture__image{
+	   	display: block;
+	    width: auto;
+			height: auto;
+			max-width: 100%;
+			max-height: 500px;
+		}
+
+		.picture__caption{
+			@include setType(4, $ms-down2);
+			position: absolute;
+			top: 100%;
+		}
+	}
+}

@@ -1,0 +1,11 @@
+<nav class='archive'>
+	<ul class='archive__list' data-filters='recent'>
+	{{#each items}}
+		<li class='archive__list__item note_{{category}}' data-filters='{{created.year}}' data-date='{{created.date}}'>
+			<a class='archive__list__item__link' href="#/{{../url}}/{{created.year}}/{{id}}">
+			{{title}}
+			</a>
+		</li>
+	{{/each}}
+	</ul>
+</nav>

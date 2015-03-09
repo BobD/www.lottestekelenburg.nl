@@ -1,0 +1,26 @@
+<section class='main__section main__section--information'>
+
+    <header class='main__section__header'>
+        {{#with filters.info}}
+            {{> helpers/filter url=../sections.information.url}}
+        {{/with}}
+    </header>
+
+    {{#with about}}
+			<article class='text'>
+
+				<div class='text__close'>X</div>
+
+				<header class='text__header'>
+					<h1>Lotte Stekelenburg</h1>
+				</header>
+
+				<div class='text__body'>
+					{{{text}}}
+				</div>
+
+			</article>
+    {{/with}}
+
+</section>
+

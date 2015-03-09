@@ -1,0 +1,33 @@
+.main__section{
+
+	&.main__section--information{
+		width: 15%;
+		float: right;
+		z-index: 2;
+
+		&.hide{
+			.text{
+				margin-left: 100%;
+				cursor: pointer;
+				opacity: 0.6;
+
+				&:hover{
+					margin-left: 90%;
+					opacity: 1;
+				}
+			}
+		}
+
+		.text{
+			margin-left: -142px;
+			width: 216px;
+			transition: margin-left $transition-duration;
+
+			@include text-link();
+		}
+
+		.main__section__header{
+			margin-left: -142px;
+		}
+	}
+}
