@@ -132,3 +132,23 @@
     clear: both;
   }
 }
+
+
+@mixin hamburger($size){
+  &{
+    height: $size;
+  }
+
+  &:before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: $size;
+    height: $size / 6;
+    background: white;
+    box-shadow: 
+      0 ($size * 0.33) 0 0 white,
+      0 ($size * 0.66) 0 0 white;
+  }
+}

@@ -9,7 +9,9 @@ requirejs.config({
      archive: 'modules/sections/archive',
      content: 'modules/sections/content',
      information: 'modules/sections/information',
-     mobile: 'modules/sections/mobile'
+     mobile: 'modules/sections/mobile',
+     slideout: 'vendors/slideout.min',
+     fastclick: 'vendors/fastclick.min'
   }
 });
 
@@ -21,29 +23,34 @@ require([
 	'archive',
 	'information',
 	'content',
-	'mobile'
-	], function(domReady, albums, $, routes, archive, information, content, mobile) {
+	'mobile',
+	'fastclick'
+	], function(domReady, albums, $, routes, archive, information, content, mobile, FastClick) {
+	
 	var albums = JSON.parse(albums);
 
 	$('html').removeClass('no-js').addClass('js');
 
-	archive.init({
-		$container: $('.main__section--archive')
-	});
+	if($('.main').hasClass('mobile')){
+		mobile.init({
+			$container: $('.main__section--mobile')
+		});
+	}else{
+		archive.init({
+			$container: $('.main__section--archive')
+		});
 
-	content.init({
-		$container: $('.main__section--content'),
-		albums: albums
-	});
+		content.init({
+			$container: $('.main__section--content'),
+			albums: albums
+		});
 
-	information.init({
-		$container: $('.main__section--information')
-	});
+		information.init({
+			$container: $('.main__section--information')
+		});
 
-	mobile.init({
-		$container: $('.main__section--mobile')
-	});
+		routes.init({});
+	}
 
-	routes.init({});
-
+	FastClick.attach(document.body);
 });

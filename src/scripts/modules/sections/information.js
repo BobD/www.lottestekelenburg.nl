@@ -16,7 +16,7 @@ define(['jquery', 'underscore', 'filter'], function($, _, Filter) {
 				module.nav.trigger();
 			});
 
-			module.$container.find('.text').on('click', function(){
+			module.$container.find('.text').on('click mouseenter', function(){
 				if(module.$container.hasClass('hide')){
 					module.nav.trigger();
 				}

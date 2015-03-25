@@ -7,9 +7,10 @@ module.exports = function(grunt) {
 			{src: 'build/scripts/main.min.js', dest: endPath + '/scripts/main.min.js'},
 			{src: 'build/scripts/director.min.js', dest: endPath + '/scripts/director.min.js'},
 			{src: 'build/scripts/lib/jquery/jquery.min.map', dest: endPath + '/scripts/jquery.min.map'},
+			{expand: true, cwd: 'dist/scripts/vendors/', src: ['**/*.*'], dest: endPath + '/scripts/vendors/', filter: 'isFile'},
 			{expand: true, cwd: 'dist/css/', src: ['**/*.*'], dest: endPath + '/css', filter: 'isFile'},
 		]);
-		grunt.task.run(['requirejs', 'copy:distribute']);
+		grunt.task.run(['default', 'requirejs', 'copy:distribute']);
 	});
 
 }

@@ -18,6 +18,9 @@
     "jquery": "~2.1.1"
   },
   "devDependencies": {
-    "underscore": "~1.7.0"
+    "underscore": "~1.7.0",
+    "slideout": "https://github.com/mango/slideout.git#~0.1.5",
+    "fastclick": "~1.0.6",
+    "picturefill": "~2.3.0"
   }
 }

@@ -1,89 +1,109 @@
 .main__section{
 
 	&.main__section--mobile{
-		position: fixed;
-		transition: margin-left $transition-duration;
-		background-color: rgba(darken($background-color, 40%), 0.90);
-		z-index: 2;
-		top: 0;
-		left: 0;
-		bottom: 0;
-		width: 100%;
-		padding: emRhythm(1) emRhythm(3);
+		padding: 0;
 		display: none;
-		margin-left: -100%;
-
-		&.show{
-			margin-left: 0;
-		}
+		font-size: 120%;
 
 		.main__section__header{
 			margin: 0;
 			position: relative;
 			margin-bottom: emRhythm(1);
-
-			.hamburglar{
-				display: block;
-				transition: margin-right $transition-duration;
-		  	position: fixed;
-		  	top: emRhythm(2);
-		  	right: emRhythm(2);
-			}
 		}
 
 		.main__section__body{
 			overflow: auto;
 			height: 100%;
 
-			> div{
-				margin-bottom: emRhythm(6);
-				overflow: hidden;
+			.main__section__body__header{
+				margin: emRhythm(1) 0 emRhythm(2) 0;
+				font-size: 150%;
+			}
 
-				h2{
-					@include setType(8, $ms-up3);
+			.photo{
+				margin: 0 0 emRhythm(2) 0;
+
+				.picture__image{
+					max-height: none;
 				}
 
+				.picture__caption{
+					position: relative;
+				}
+			}
 
-				ul{
-					li{
-						@include link();
-						@include vertical-dash();
+			.article{
+				display: block;
+				opacity: 1;
+				margin: 0 0 emRhythm(6) 0;
+				max-height: none;
 
-						float: left;
-						// display: inline-block;
+				.article__visual{
+					float: left;
+					margin: 0 emRhythm(2) emRhythm(2) 0;
+				}
 
-						&:hover,
-						&.active{
-							color: inherit;
-							a{
-								@include horizontal-dash(2px);
-								color: inherit;
-							}
-						}
-
-						a{
-							// @include setType(6, $ms-up1);
-							display: inline-block;
-							vertical-align: middle;
-						}
-
-						&:after{
-							margin-right: emRhythm(1.5);
-						}
-
-						&:nth-child(2n + 2){
-							&:after{
-								display: none;
-							}
-						}
-
-						&:nth-child(2n + 3){
-							clear: left;
-						}
-					}
+				.article__body{
+					max-height: none;
+					overflow: visible;
 				}
 			}
 		}
 
 	}
+}
+
+
+
+// https://github.com/mango/slideout#usage
+.slideout__toggle{
+	position: relative;
+	cursor: pointer;
+	margin-top: emRhythm(1);
+	margin-bottom: emRhythm(2);
+
+	@include hamburger(2em);
+}
+
+.slideout-menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  width: 256px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  display: none;
+  background-color: #1D1F20;
+  background-image: linear-gradient(145deg, #1D1F20, #404348);
+  padding: emRhythm(2);
+}
+
+.slideout__menu__header{
+	margin-bottom: emRhythm(2);
+	font-size: 150%;
+}
+
+.slideout__menu__body{
+	a{
+		color: inherit;
+	}
+}
+
+.slideout-panel {
+  position:relative;
+  z-index: 1;
+  background: $background-color;
+  padding: emRhythm(2);
+}
+
+.slideout-open,
+.slideout-open body {
+  overflow: hidden;
+}
+
+.slideout-open .slideout-menu {
+  display: block;
 }

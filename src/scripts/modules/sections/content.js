@@ -67,7 +67,6 @@
 			module.hideAlbums();
 			module.$images.empty();
 			module.nav.clear();
-			// module.resetScroll();
 			module.scrollTo(article);
 			module.$container.attr('data-filters', 'archive');
 		},
@@ -117,6 +116,7 @@
 			if(environment != 'develop'){
 				var $imageContainer = module.getSection('photography');
 				var $album = module.$albums.find('li[data-album = "' + album + '"]');
+				module.$albums.find('.active').removeClass('active');
 				$album.addClass('active');
 
 				if($imageContainer.attr('data-album') != album){
@@ -146,24 +146,23 @@
 				if(album != module.current.album){
 					var $album = module.$albums.find('li[data-album = "' + album + '"]');
 					var $imageContainer = module.getSection('photography');
-					$album.addClass('active');
 					$imageContainer.empty();
-
 					module.resetScroll();
 					module.$albums.find('.active').removeClass('active');
+					$album.addClass('active');
 
 					$.ajax({
-		       type: 'GET',
-		        url: albumsFeed + album + '.json?callback=?',
-		        jsonpCallback: 'jsonCallback',
-		        contentType: "application/json",
-		        dataType: 'jsonp',
-		        success: function(json) {
-		          module.loadImages(json.album.images);
-		          module.showImage(image);
-		        },
-		        error: function(e) {}
-			    });
+				       type: 'GET',
+				        url: albumsFeed + album + '.json?callback=?',
+				        jsonpCallback: 'jsonCallback',
+				        contentType: "application/json",
+				        dataType: 'jsonp',
+				        success: function(json) {
+				          module.loadImages(json.album.images);
+				          module.showImage(image);
+				        },
+				        error: function(e) {}
+					});
 				}else{
 					module.showImage(image);
 				}
@@ -230,24 +229,21 @@
 				$scrollTarget = module.$scrollContainer.find('article:visible:first');
 			}
 
-    	scrollCurrent = module.$scrollContainer.css('top');
-    	scrollNew = -$scrollTarget.position().top;
+	    	scrollCurrent = module.$scrollContainer.css('top');
+	    	scrollNew = -$scrollTarget.position().top;
+	    	$scrollTarget.parent().find('.active').toggleClass('active', false);
 
-    	$scrollTarget.parent().find('.active').toggleClass('active', false);
+	    	if(parseInt(scrollCurrent, 10) == scrollNew){
+	      		$scrollTarget.toggleClass('active', true);
+	    	}else{
+	    		var top = -$scrollTarget.position().top;
 
-    	if(parseInt(scrollCurrent, 10) == scrollNew){
-      	$scrollTarget.toggleClass('active', true);
-    	}else{
-    		var top = -$scrollTarget.position().top;
-
-	      module.$scrollContainer.stop().animate({
-          top: top,
-        },{
-        	complete: function(){
-      			$scrollTarget.toggleClass('active', true);
-          }
-        }, 500);
-	    }
+		      	module.$scrollContainer.stop().animate({top: top},{
+		      		complete: function(){
+	      				$scrollTarget.toggleClass('active', true);
+	          		}
+	        	}, 500);
+		    }
 		},
 
 		resetScroll: function(){

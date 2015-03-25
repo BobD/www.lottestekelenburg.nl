@@ -1,37 +1,94 @@
 <section class='main__section main__section--mobile'>
 
-    <header class='main__section__header'>
-        {{> helpers/hamburger}}
-        <h1>Lotte Stekelenburg</h1>
-    </header>
-
-    <div class='main__section__body'>
-
-        <div>
-
-            <h2>Notes</h2>
-
-            <ul>
-                <li>
-                    <a href="#/{{sections.archive.url}}/recent">Recent</a>
-                </li>
-                <li>
-                    <a href="#/{{sections.archive.url}}/before">Before</a>
-                </li>
-
-            </u>
-
-        </div>
-
-        <div>
-
-            <h2>Photography</h2>
-
-            {{#with albums}}
-                {{> helpers/mobile-albums}}
+    <div class='slideout__menu'>
+        <h4 class='slideout__menu__header'>Lotte Stekelenburg</h4>
+        <div class='slideout__menu__body'>
+            {{#with about}}
+                {{{text}}}
             {{/with}}
-
         </div>
+    </div>
+
+    <div class='main__section__body slideout__panel'>
+
+        <div class='slideout__toggle'></div>
+
+        <section>
+            <h2 class='main__section__body__header'>Recent Albums</h2>
+
+            <article class="photo" id="ls-tropicana-23-12-13-06">
+                    <picture class="picture">
+                        <img src="http://localhost/new/assets/photos/LS_Tropicana_23-12-13_06.jpg" width="2000" height="1331" alt="1" class="picture__image">
+                        <figcaption class="picture__caption">
+                            1
+                        </figcaption>
+                    </picture>
+            </article>                                            
+            <article class="photo" id="ls-tropicana-23-12-13-20">
+                    <picture class="picture">
+                        <img src="http://localhost//new/assets/photos/LS_Tropicana_23-12-13_20.jpg" width="1331" height="2000" alt="2" class="picture__image">
+                        <figcaption class="picture__caption">
+                            2
+                        </figcaption>
+                    </picture>
+            </article>                                            
+            <article class="photo" id="ls-tropicana-23-12-13-24">
+                    <picture class="picture">
+                        <img src="http://localhost//new/assets/photos/LS_Tropicana_23-12-13_24.jpg" width="2000" height="1331" alt="3" class="picture__image">
+                        <figcaption class="picture__caption">
+                            3
+                        </figcaption>
+                    </picture>
+            </article>                                            
+            <article class="photo" id="ls-tropicana-23-12-13-27">
+                    <picture class="picture">
+                        <img src="http://localhost//new/assets/photos/LS_Tropicana_23-12-13_27.jpg" width="2000" height="1331" alt="4" class="picture__image">
+                        <figcaption class="picture__caption">
+                            4
+                        </figcaption>
+                    </picture>
+            </article>                                            
+            <article class="photo active" id="ls-tropicana-23-12-13-26">
+                    <picture class="picture">
+                        <img src="http://localhost//new/assets/photos/LS_Tropicana_23-12-13_26.jpg" width="2000" height="1331" alt="5" class="picture__image">
+                        <figcaption class="picture__caption">
+                            5
+                        </figcaption>
+                    </picture>
+            </article>                                            
+            <article class="photo" id="ls-tropicana-23-12-13-22">
+                    <picture class="picture">
+                        <img src="http://localhost//new/assets/photos/LS_Tropicana_23-12-13_22.jpg" width="2000" height="1331" alt="6" class="picture__image">
+                        <figcaption class="picture__caption">
+                            6
+                        </figcaption>
+                    </picture>
+            </article>                                            
+            <article class="photo" id="ls-tropicana-23-12-13-07">
+                    <picture class="picture">
+                        <img src="http://localhost//new/assets/photos/LS_Tropicana_23-12-13_07.jpg" width="2000" height="1331" alt="7" class="picture__image">
+                        <figcaption class="picture__caption">
+                            7
+                        </figcaption>
+                    </picture>
+            </article>                                            
+            <article class="photo" id="ls-tropicana-23-12-13-36">
+                    <picture class="picture">
+                        <img src="http://localhost//new/assets/photos/LS_Tropicana_23-12-13_36.jpg" width="1331" height="2000" alt="8" class="picture__image">
+                        <figcaption class="picture__caption">
+                            8
+                        </figcaption>
+                    </picture>
+            </article>                                    
+        </section>
+
+        <section>
+            <h2 class='main__section__body__header'>Recent Notes</h2>
+           {{#each archive.items}}
+                {{> helpers/notes/article}}
+            {{/each}}
+        </section>
+
     </div>
 
 </section>
