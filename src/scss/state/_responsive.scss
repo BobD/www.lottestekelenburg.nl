@@ -1,37 +1,37 @@
-@include respond-to(mobile) {
+// @include respond-to(mobile) {
 
-	html.js{
-		position: relative;
-	}
+// 	html.js{
+// 		position: relative;
+// 	}
 
-	html.js body{
-		min-width: 0;
-		padding: emRhythm(2);
-	}
+// 	html.js body{
+// 		min-width: 0;
+// 		padding: emRhythm(2);
+// 	}
 
-	html, body{
-		width: 100%;
-		height: 100%;
-	}
+// 	html, body{
+// 		width: 100%;
+// 		height: 100%;
+// 	}
 
-	.main{
-		padding: 0 !important;
-		background: transparent;
-	}
+// 	.main{
+// 		padding: 0 !important;
+// 		background: transparent;
+// 	}
 
-	.main__section{
+// 	.main__section{
 
-		&.main__section--mobile{
-			display: block !important;
-		}
+// 		&.main__section--mobile{
+// 			display: block !important;
+// 		}
 
-		&.main__section--archive,
-		&.main__section--content,
-		&.main__section--information{
-			display: none !important;
-		}
-	}
-}
+// 		&.main__section--archive,
+// 		&.main__section--content,
+// 		&.main__section--information{
+// 			display: none !important;
+// 		}
+// 	}
+// }
 
 @include respond-to(small) {
 

@@ -43,7 +43,8 @@ module.exports = function(grunt) {
     cssmin: {
       build: {
         files: {
-          'build/css/style.min.css': ['build/css/style.css']
+          'build/css/style.min.css': ['build/css/style.css'],
+          'build/css/style-mobile.min.css': ['build/css/style-mobile.css']
         }
       }
     },
@@ -58,6 +59,7 @@ module.exports = function(grunt) {
       build: {
         files: {
           'build/css/style.css': 'src/scss/style.scss',
+          'build/css/style-mobile.css': 'src/scss/style-mobile.scss',
           'build/css/develop.css': 'src/scss/develop.scss'
         }
       }
@@ -75,12 +77,20 @@ module.exports = function(grunt) {
 
     // https://github.com/gruntjs/grunt-contrib-requirejs
     requirejs: {
-      compile: {
+      desktop: {
         options: {
           baseUrl: "build/scripts",
           mainConfigFile: "build/scripts/main.js",
           name: "main",
           out: "build/scripts/main.min.js"
+        }
+      },
+      mobile: {
+        options: {
+          baseUrl: "build/scripts",
+          mainConfigFile: "build/scripts/main-mobile.js",
+          name: "main-mobile",
+          out: "build/scripts/main-mobile.min.js"
         }
       }
     },
