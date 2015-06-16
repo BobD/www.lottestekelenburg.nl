@@ -1,0 +1,18 @@
+.main__section{
+	&[data-filters='photography']{
+		.main__section__header__nav{
+			display: block;
+		}
+	}
+}
+
+.section{
+
+	&[data-section='intro']{
+		.photo{
+			.picture__caption{
+				display: none;
+			}
+		}
+	}
+}

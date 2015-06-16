@@ -1,32 +1,38 @@
 {
-	"commissioned": [
-		{"title": "boijmans", "id": "boijmans"},
-		{"title": "schiebroek-zuid", "id": "stadslandbouw"},
-		{"title": "the insect boek", "id": "insecten"},
-		{"title": "jonas staal", "id": "jonas-staal"},
-		{"title": "co-parent book", "id": "co-ouders"},
-		{"title": "studio roosegaarde", "id": "studio-roosegaarde"},
-		{"title": "showroom mama", "id": "showroom-mama"},
-		{"title": "helmut smits", "id": "helmut-smits"},
-		{"title": "esme valk", "id": "esme-valk"},
-		{"title": "dollab", "id": "dollab"},
-		{"title": "sabrina basten", "id": "sabrina-basten"},
-		{"title": "marije de wit", "id": "marije-de-wit"},
-		{"title": "bold design", "id": "bold-design"},
-		{"title": "nina boas", "id": "nina-boas"},
-		{"title": "yoga festival", "id": "yoga"}
-	],
+	"opdracht": {
+		"albums": [
+			{"title": "boijmans", "id": "boijmans"},
+			{"title": "schiebroek-zuid", "id": "stadslandbouw"},
+			{"title": "the insect boek", "id": "insecten"},
+			{"title": "jonas staal", "id": "jonas-staal"},
+			{"title": "co-parent book", "id": "co-ouders"},
+			{"title": "studio roosegaarde", "id": "studio-roosegaarde"},
+			{"title": "showroom mama", "id": "showroom-mama"},
+			{"title": "helmut smits", "id": "helmut-smits"},
+			{"title": "esme valk", "id": "esme-valk"},
+			{"title": "dollab", "id": "dollab"},
+			{"title": "sabrina basten", "id": "sabrina-basten"},
+			{"title": "marije de wit", "id": "marije-de-wit"},
+			{"title": "bold design", "id": "bold-design"},
+			{"title": "nina boas", "id": "nina-boas"},
+			{"title": "yoga festival", "id": "yoga"}
+		]
+	},
 
-	"portrait": [
-		{"title": "single portraits", "id": "portraits"}
-	],
+	"portret": {
+		"albums": [
+			{"title": "single portraits", "id": "single-portraits"}
+		]
+	},
 
-	"self": [
-		{"title": "single images", "id": "single-images"},
-		{"title": "serie assistant", "id": "serie-assistent"},
-		{"title": "serie hot cold", "id": "serie-hot-cold"},
-		{"title": "serie mothers friend", "id": "serie-mothers-friend"},
-		{"title": "serie outside", "id": "serie-outside"},
-		{"title": "serie play", "id": "serie-play"}
-	]
+	"zelf": {
+		"albums": [
+			{"title": "single images", "id": "single-images"},
+			{"title": "serie assistant", "id": "serie-assistent"},
+			{"title": "serie hot cold", "id": "serie-hot-cold"},
+			{"title": "serie mothers friend", "id": "serie-mothers-friend"},
+			{"title": "serie outside", "id": "serie-outside"},
+			{"title": "serie play", "id": "serie-play"}
+		]
+	}
 }

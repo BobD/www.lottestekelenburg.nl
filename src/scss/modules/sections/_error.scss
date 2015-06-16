@@ -1,0 +1,21 @@
+.error{
+	padding-top: 2em;
+	text-align: center;
+	font-size: 1.2em;
+}
+
+.error-content{
+	display: inline-block;
+	padding: 1em;  
+	background: white;
+ 	color: black;
+	max-width: 30em;
+
+	h1{
+		margin-bottom: 1em;
+	}
+
+	a[href]{
+		color: inherit;
+	}
+}

@@ -3,11 +3,13 @@
 	> a{
 		color: inherit;
 		text-decoration: none;
+		display: block;
 	}
 
 	.picture{
 		display: block;
 		position: relative;
+		max-width: $image-max-width;
 
 		.picture__image{
 	   		display: block;

@@ -9,10 +9,11 @@
         <div class='main__section__header__nav'>
 
             <ul class='list albums'>
+         
                 {{#each albums}}
-                    <div data-filter='{{@key}}'>
-                    {{#each this}}
-                        <li data-album='{{id}}'><a href='#/{{../../sections.photography.url}}/{{@key}}/{{id}}'>{{title}}</a></li>
+                    <div data-filter='{{@key}}' class='list__category' data-length='{{albums.length}}'>
+                    {{#each albums}}
+                        <li data-album='{{id}}' class='list__item'><a class='list__link' href='#/{{../../sections.photography.url}}/{{@key}}/{{id}}'>{{title}}</a></li>
                     {{/each}}
                     </div>
                 {{/each}}

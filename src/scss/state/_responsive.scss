@@ -63,7 +63,13 @@
 	.article{
 		> .article__visual{
 			width: 35%  !important;
-			margin-left: emRhythm(2) !important;
+			// margin-left: emRhythm(2) !important;
+			float: left;
+			margin: 0 emRhythm(3) emRhythm(2) 0 !important;
+		}
+
+		> .article__body{
+			display: inline;
 		}
 	}
 }

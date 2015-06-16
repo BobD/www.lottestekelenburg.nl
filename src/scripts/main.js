@@ -15,7 +15,7 @@ requirejs.config({
 });
 
 require([
-	'!domReady',
+	'domReady!',
 	'text!albums.json',
 	'jquery',
 	'routes',
@@ -29,23 +29,20 @@ require([
 
 		$('html').removeClass('no-js').addClass('js');
 
-		if($('html').hasClass('mobile')){
-		}else{
-			archive.init({
-				$container: $('.main__section--archive')
-			});
+		archive.init({
+			$container: $('.main__section--archive')
+		});
 
-			content.init({
-				$container: $('.main__section--content'),
-				albums: albums
-			});
+		content.init({
+			$container: $('.main__section--content'),
+			albums: albums
+		});
 
-			information.init({
-				$container: $('.main__section--information')
-			});
+		information.init({
+			$container: $('.main__section--information')
+		});
 
-			routes.init({});
-		}
+		routes.init({});
 
-	FastClick.attach(document.body);
+		FastClick.attach(document.body);
 });

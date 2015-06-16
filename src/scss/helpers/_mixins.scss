@@ -2,9 +2,7 @@
 
   a{
     text-decoration: none;
-    text-transform: capitalize;
     color: inherit;
-    // transition: color 0.05s;
 
     &:hover{
       color: $active-link-color;
@@ -112,8 +110,9 @@
   }
 }
 
-@mixin horizontal-dash($bottom: - emRhythm(0.5)){
+@mixin horizontal-dash($bottom: - emRhythm(0.4)){
   position: relative;
+
   &:before{
     content: '';
     display: block;
@@ -122,6 +121,7 @@
     left: 0;
     right: 0;
     border-bottom: thin solid white;
+    opacity: .8;
   }
 }
 

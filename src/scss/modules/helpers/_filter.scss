@@ -2,9 +2,8 @@
 	@include setType($base-line-multi, $ms-up1);
 
 	.filter__header{
-		margin-bottom: emRhythm(1);
+		margin-bottom: emRhythm(1.5);
 		display: inline-block;
-		text-transform: capitalize;
 		font-weight: bold;
 		position: relative;
 

@@ -8,19 +8,26 @@ define(['jquery', 'underscore', 'filter'], function($, _, Filter) {
 				$filter: module.$container.find('.filter__list')
 			});
 
-			module.$container.find('.archive__list').find('a').bind('click', function(e){
-				module.show(e);
+			module.$container.find('.archive__list').find('a').bind('mouseenter', function(e){
+				module.$container.toggleClass('hide', false);
 			});
 		},
 
-		filter: function(filters, loadFirstItem){
-			module.$container.find('.archive__list').attr('data-filters', filters);
+		filter: function(filters, article){
+			var $article;
 
-			if(loadFirstItem){
-				var $first = module.$container.find('.archive__list__item[data-filters="' + filters + '"]').eq(0);
-				$first.find('a').trigger('click');
-				$first.addClass('active');
+			module.$container.find('.archive__list').attr('data-filters', filters);
+			module.$container.find('.archive__list__item.active').removeClass('active');
+			module.$container.toggleClass('hide', false);
+
+			if(article === undefined){	
+				$article = module.$container.find('.archive__list__item[data-filters="' + filters + '"]').eq(0);
+				$article.find('a').trigger('click');
+			}else{
+				$article = module.$container.find('.archive__list__item__link[href="' + window.location.hash + '"]').parent('.archive__list__item');
 			}
+
+			$article.addClass('active');
 
 			module.nav.activate(filters);
 		},
@@ -38,15 +45,15 @@ define(['jquery', 'underscore', 'filter'], function($, _, Filter) {
 			module.$container.toggleClass('hide', true);
 		},
 
-		show: function(id){
-			module.$container.toggleClass('hide', false);
+		// show: function(id){
+		// 	module.$container.toggleClass('hide', false);
 
-			if(id){
-				module.$container.find('.archive__list__item.active').removeClass('active');
-				var $item = module.$container.find('.archive__list__item__link[href="' + window.location.hash + '"]');
-				$item.parent('.archive__list__item').addClass('active');
-			}
-		}
+		// 	if(id){
+		// 		module.$container.find('.archive__list__item.active').removeClass('active');
+		// 		var $item = module.$container.find('.archive__list__item__link[href="' + window.location.hash + '"]');
+		// 		$item.parent('.archive__list__item').addClass('active');
+		// 	}
+		// }
 	}
 
 	return module;

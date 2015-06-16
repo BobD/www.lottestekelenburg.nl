@@ -11,9 +11,9 @@
 		"title": "photography",
 		"type": "photography",
 		"items": [
-			{"label": "commissioned", "filters": "commissioned"},
-			{"label": "portrait", "filters": "portrait"},
-			{"label": "self", "filters": "self"}
+			{"label": "Opdracht", "filters": "opdracht"},
+			{"label": "Portret", "filters": "portret"},
+			{"label": "zelf", "filters": "zelf"}
 		]
 	},
 	"info": {

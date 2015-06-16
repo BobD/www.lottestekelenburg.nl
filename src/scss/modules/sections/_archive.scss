@@ -10,7 +10,8 @@
 			transition: margin-right $transition-duration, opacity $transition-duration;
 
 			.archive__list{
-				margin-left: -50px;
+				width: inherit;
+				text-align: left;
 			}
 		}
 
@@ -19,17 +20,9 @@
 		}
 
 		&.hide{
-
 			.archive{
 				margin-right: 88%;
 				opacity: 0.6;
-			}
-
-			.archive{
-				&:hover{
-					margin-right: 0;
-					opacity: 1;
-				}
 			}
 		}
 	}

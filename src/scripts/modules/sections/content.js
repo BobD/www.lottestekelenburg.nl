@@ -19,8 +19,14 @@
 			module.$scrollContainer.on('click', '.photo.active', function(e){
 				e.preventDefault();
 
-				var next = $(this).next().find('a').attr('href')
-				window.location.hash = next;
+				module.gotoImage($(this).next());
+			});
+
+			// Go to the choosen album photo
+			module.$scrollContainer.on('click', '.photo:not(.active)', function(e){
+				e.preventDefault();
+
+				module.gotoImage($(this));
 			});
 
 			// Return to the first if the active one is the last
@@ -33,16 +39,41 @@
 				}
 			});
 
-			// BOB::20150130, articles do not have an a[href] with direct links container like photo's
-			module.$scrollContainer.on('click', '.article:not(.active)', function(e){
+			// Go to the next article
+			module.$scrollContainer.on('click', '.article.active:not(:last-child) .article__header, .article.active:not(:last-child) .article__footer', function(e){
 				e.preventDefault();
 
-				var filter = $(this).attr('data-filters');
-				var album = $(this).attr('album');
-				var id = $(this).attr('id');
+				module.gotoArticle($(this).parents('.article').next());
+			});
 
-				$('body').scrollTop(0);
-				window.location.hash = '/' + archiveURL + '/' + filter + '/' + id;
+			// Go to the choosen article 
+			module.$scrollContainer.on('click', '.article:not(.active) .article__header, .article:not(.active) .article__footer', function(e){
+				e.preventDefault();
+
+				module.gotoArticle($(this).parents('.article'));
+			});
+
+
+			// Add some key naviation
+			$(document).on( 'keydown', function( e ) {
+				var $next, $prev;
+
+				// Not partically ideal, mostly because the .article and .photo markup is not similar.
+				if(module.current.type == 'article'){
+					$next = $('.article.active').find('.article__footer');
+					$prev = $('.article.active').prev().find('.article__footer');
+				}
+
+				if(module.current.type == 'album'){
+					$next = $('.photo.active');
+					$prev = $('.photo.active').prev();
+				}
+
+			    if (e.keyCode == '38') {
+			       	$prev.trigger('click');
+			    }else if (e.keyCode == '40') {
+			        $next.trigger('click');
+			    }
 			});
 		},
 
@@ -52,15 +83,20 @@
 			module.showSection('articles');
 		},
 
-		listArticles: function(filter, loadFirstArticle){
+		listArticles: function(filter, article){
 			module.initArticles();
 			module.$scrollContainer.attr('data-filters', filter);
 
-			if(loadFirstArticle){
-				module.showArticle();
+			if(article){
+				module.showArticle(article);
+			}else{
+				module.scrollTo();
 			}
 
-			module.current.filter = filter;
+			module.current = {
+				type: 'article',
+				filter: filter
+			}
 		},
 
 		showArticle: function(article){
@@ -69,6 +105,15 @@
 			module.nav.clear();
 			module.scrollTo(article);
 			module.$container.attr('data-filters', 'archive');
+		},
+
+		gotoArticle: function($article){
+			var filter = $article.attr('data-filters');
+			var album = $article.attr('album');
+			var id = $article.attr('id');
+
+			$('body').scrollTop(0);
+			window.location.hash = '/' + archiveURL + '/' + filter + '/' + id;
 		},
 
 		initIntro: function(){
@@ -86,20 +131,34 @@
 			module.$container.attr('data-filters', 'photography');
 		},
 
-		listAlbums: function(filter, loadFirstAlbum){
-			module.hideAlbums();
-
+		listAlbums: function(filter, album, image){
 			var $albumList = module.$albums.find('*[data-filter="' + filter + '"]');
-			$albumList.addClass('show');
 
+			module.hideAlbums();
 			module.initPhotography();
 			module.nav.activate(filter);
-			module.current.filter = filter;
 
-			if(loadFirstAlbum){
-				$album = $albumList .find('li').first();
-				album = $album.attr('data-album');
-				module.loadAlbum($album.find('a').attr('href'));
+			$albumList.addClass('show');
+
+			if(!album && filter && module.current.filter != filter){
+				var hash= $albumList.find('li').first().find('a').attr('href');
+				var split = hash.split('/');
+				var filter = split[2];
+				var album = split[3];
+				var image = split[4];
+			}
+
+			if(album && module.current.album != album){
+				 module.loadAlbum(filter, album, image);
+			}else if(image && module.current.image != image){
+				module.showImage(image);
+			}
+
+			module.current = {
+				type: 'album',
+				filter: filter,
+				album: album,
+				image: image
 			}
 		},
 
@@ -107,90 +166,45 @@
 			module.$albums.find('*[data-filter]').removeClass('show');
 		},
 
-		loadAlbum: function(url){
-			var urlSplit = url.split('/');
-			var filter = urlSplit[2];
-			var album = urlSplit[3];
-			var image = urlSplit[4];
+		loadAlbum: function(filter, album, image){
+			var rootURL = '';
 
-			if(environment != 'develop'){
-				var $imageContainer = module.getSection('photography');
-				var $album = module.$albums.find('li[data-album = "' + album + '"]');
-				module.$albums.find('.active').removeClass('active');
-				$album.addClass('active');
-
-				if($imageContainer.attr('data-album') != album){
-					module.resetScroll();
-
-					$imageContainer.empty();
-					$imageContainer.load('albums/' + album, function($el){
-						var $images = $(this).find('.photo');
-						var imageMenuLinks = [];
-						_.each($images, function(image){
-							var $image = $(image);
-							var id = $image.attr('id');
-							var href = $image.find('a[href]').attr('href');
-							var name =  $image.find('.picture__caption').text();
-							imageMenuLinks.push('<li data-image="' + id + '"><a href="' + href + '">' + name + '</a></li>');
-						});
-						module.$images.empty();
-						module.$images.append(imageMenuLinks.join(''));
-						module.showImage(image);
-					});
-					$imageContainer.attr('data-album', album);
-				}else{
-					module.showImage(image);
-				}
-
-			}else{
-				if(album != module.current.album){
-					var $album = module.$albums.find('li[data-album = "' + album + '"]');
-					var $imageContainer = module.getSection('photography');
-					$imageContainer.empty();
-					module.resetScroll();
-					module.$albums.find('.active').removeClass('active');
-					$album.addClass('active');
-
-					$.ajax({
-				       type: 'GET',
-				        url: albumsFeed + album + '.json?callback=?',
-				        jsonpCallback: 'jsonCallback',
-				        contentType: "application/json",
-				        dataType: 'jsonp',
-				        success: function(json) {
-				          module.loadImages(json.album.images);
-				          module.showImage(image);
-				        },
-				        error: function(e) {}
-					});
-				}else{
-					module.showImage(image);
-				}
+			if(environment == 'develop'){
+				rootURL = 'http://localhost/new/';
 			}
 
-			module.current.album = album;
-		},
-
-		loadImages: function(images){
 			var $imageContainer = module.getSection('photography');
-			var imageList = [];
-			var menuList = [];
-			var src, link;
+			var $album = module.$albums.find('li[data-album = "' + album + '"]');
+			module.$albums.find('.active').removeClass('active');
+			$album.addClass('active');
 
-			// Keep the HTML markup for this article type in sync with the handlebars template in templates/helpers/photo.hbs
-			// loadImages() is only called in the prototype, no need to drag Handlebars as a dependency in content.js for production
-			_.each(images, function(img){
-				src = 'http://' + img.location + '/' + img.hash + '_large_mobile.jpg';
-				link = '#/' + photographyURL + '/' + module.current.filter + '/' + module.current.album + '/' + img.id;
-				imageList.push('<article class="photo" id="' + img.id + '"><a href="' + link + '"><picture class="picture"><img src="' + src + '" alt="' + img.name  + '" class="picture__image"><figcaption class="picture__caption">' + img.name + '</figcaption></picture></a></article>');
-				menuList.push('<li data-image="' + img.id + '"><a href="' + link + '">' + img.name + '</a></li>');
-			});
+			module.resetScroll();
+			module.$images.empty();
 
 			$imageContainer.empty();
-			$imageContainer.append(imageList.join(''));
+			$imageContainer.load(rootURL + 'albums/' + filter + '/' + album, function($el){
+				var $images = $(this).find('.photo');
+				var imageMenuLinks = [];
 
-			module.$images.empty();
-			module.$images.append(menuList.join(''));
+				_.each($images, function(image){
+					var $image = $(image);
+					var id = $image.attr('id');
+					var href = $image.find('a[href]').attr('href');
+					var name =  $image.find('.picture__caption').text();
+					imageMenuLinks.push('<li class="list__item" data-image="' + id + '"><a class="list__link" href="' + href + '">' + name + '</a></li>');
+				});
+
+				module.$images.append(imageMenuLinks.join(''));
+				module.showImage(image);
+
+				if(environment == 'develop'){
+					// Just so the images load properly in development
+					$(this).find('img').each(function(index, img){
+						$(img).attr({src: 'http://localhost' + $(img).attr('src')});
+					})
+				}
+			});
+			$imageContainer.attr('data-album', album);
 		},
 
 		showImage: function(image){
@@ -204,6 +218,13 @@
 			module.$images.find('.active').removeClass('active');
 			var $image = module.$images.find('li[data-image = "' + image + '"]');
 			$image.addClass('active');
+		},
+
+		gotoImage: function($image){
+			var hash = $image.find('a').attr('href');
+			if(hash != undefined){
+				window.location.hash = hash;
+			}
 		},
 
 		hideSection: function(id){
@@ -226,7 +247,13 @@
 			var scrollCurrent, scrollNew
 
 			if($scrollTarget.length == 0){
+				// Get the first one instead
 				$scrollTarget = module.$scrollContainer.find('article:visible:first');
+			}
+
+			if($scrollTarget.length == 0){
+				// No articles at all..!
+				return;
 			}
 
 	    	scrollCurrent = module.$scrollContainer.css('top');

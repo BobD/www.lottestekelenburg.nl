@@ -34,17 +34,9 @@
 				color: white;
 			}
 
+			&:hover,
 			&.active{
-
-				&:after{
-					content: '';
-					position: absolute;
-					width: 8px;
-					height: 9px;
-					bottom: emRhythm(1);
-					right: emRhythm(1);
-					background-color: $background-color;
-				}
+				color: white;
 			}
 
 			> .archive__list__item__link{

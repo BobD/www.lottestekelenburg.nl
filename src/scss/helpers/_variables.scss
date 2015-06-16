@@ -1,21 +1,22 @@
 // Base
 $background-color:					#B4B3AC;
-$text-color:								white;
-$text-color-dark:						black;
+$text-color:						white;
+$text-color-dark:					black;
 $active-link-color:					black;
 $transition-duration:				0.4s;
+$image-max-width:					600px;
 
 // https://github.com/ianrose/typesettings
 $base-vertical-unit: 				5px;
 $base-line-multi: 					4;
-$base-font-size: 						11px;
-$ms-ratio: 									1.2;
+$base-font-size: 					11px;
+$ms-ratio: 							1.2;
 
 // Modules
-$archive-hide-stickout:			25px;
-$archive-rollout-teaser:		45px;
-$archive-item-em-size:			15;
-$archive-item-em-margin:		3;
+$archive-hide-stickout:				25px;
+$archive-rollout-teaser:			45px;
+$archive-item-em-size:				15;
+$archive-item-em-margin:			3;
 
 // Responsive
 // ----

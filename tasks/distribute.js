@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-	var endPath = '/Applications/AMPPS/www/new/'
+	var endPath = '/Applications/AMPPS/www/lottestekelenburg/'
 
 	grunt.registerTask('distribute', 'Copy the production files to the proper location for further testing', function() {
 		grunt.config('copy.distribute.files', [
