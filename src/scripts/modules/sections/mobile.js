@@ -10,7 +10,8 @@ define(['jquery', 'slideout'], function($, Slideout){
 			    'panel': module.$container.find('.slideout__panel')[0],
 			    'menu': module.$container.find('.slideout__menu')[0],
 			    'padding': 256,
-			    'tolerance': 70
+			    'tolerance': 70,
+			    'side': 'right'
 			});
 
 			module.$container.find('.slideout__toggle').click(function(e){

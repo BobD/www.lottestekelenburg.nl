@@ -6,6 +6,25 @@
 		font-size: 120%;
 		color: white;
 
+		.slideout__toggle{
+			display: inline-block;
+			vertical-align: middle;
+			width: 2.5em;
+			margin-right: .5em;
+			float: right;
+    		margin-top: .5em;
+		}
+
+		.slideout__toggle-close{
+			display: none;
+		}
+
+		.main__section__body__title{
+			display: inline-block;
+			vertical-align: middle;
+			font-size: 1.8em;
+		}
+
 		.main__section__header{
 			margin: 0;
 			position: relative;
@@ -21,11 +40,20 @@
 				font-size: 150%;
 			}
 
+			section{
+				margin-top: 1em;
+			}
+
 			.photo{
 				margin: 0 0 emRhythm(2) 0;
 
+				.picture{
+					max-width: none;
+				}
+
 				.picture__image{
 					max-height: none;
+					width: 100%;
 				}
 
 				.picture__caption{
@@ -33,24 +61,23 @@
 				}
 			}
 
-			.article{
-				display: block;
-				opacity: 1;
-				margin: 0 0 emRhythm(6) 0;
-				max-height: none;
-
-				.article__visual{
-					float: left;
-					margin: 0 emRhythm(2) emRhythm(2) 0;
-				}
-
-				.article__body{
-					max-height: none;
-					overflow: visible;
-				}
-			}
 		}
 
+		.main__section__body__footer{
+
+		}
+
+	}
+}
+
+.slideout-open{
+
+	.slideout__toggle{
+		display: none !important;
+	}
+
+	.slideout__toggle-close{
+		display: inline-block !important;
 	}
 }
 
@@ -60,10 +87,6 @@
 .slideout__toggle{
 	position: relative;
 	cursor: pointer;
-	margin-top: emRhythm(1);
-	margin-bottom: emRhythm(2);
-
-	@include hamburger(2em);
 }
 
 .slideout-menu {
@@ -77,9 +100,11 @@
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   display: none;
-  background-color: #1D1F20;
-  background-image: linear-gradient(145deg, #1D1F20, #404348);
-  padding: emRhythm(2);
+  background-color: white;
+  padding: emRhythm(4) emRhythm(2);
+  color: black;
+
+  left: auto;
 }
 
 .slideout__menu__header{

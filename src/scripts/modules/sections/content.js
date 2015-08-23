@@ -47,10 +47,10 @@
 			});
 
 			// Go to the choosen article 
-			module.$scrollContainer.on('click', '.article:not(.active) .article__header, .article:not(.active) .article__footer', function(e){
+			module.$scrollContainer.on('click', '.article:not(.active), .article:not(.active)', function(e){
 				e.preventDefault();
 
-				module.gotoArticle($(this).parents('.article'));
+				module.gotoArticle($(this));
 			});
 
 
@@ -78,6 +78,7 @@
 		},
 
 		initArticles: function(){
+			module.hideAlbums();
 			module.hideSection('intro');
 			module.hideSection('photography');
 			module.showSection('articles');
@@ -90,6 +91,7 @@
 			if(article){
 				module.showArticle(article);
 			}else{
+				module.showArticleImage(module.$scrollContainer.find('article:visible:first'), true);
 				module.scrollTo();
 			}
 
@@ -101,16 +103,29 @@
 
 		showArticle: function(article){
 			module.hideAlbums();
-			module.$images.empty();
-			module.nav.clear();
 			module.scrollTo(article);
 			module.$container.attr('data-filters', 'archive');
+
+			module.showArticleImage(module.$scrollContainer.find('#' + article), true);
+
+		},
+
+		showArticleImage: function($article, doNext){
+			var $image = $article.find('.article__visual__image.unloaded');
+			$image.attr({src: $image.attr('data-src')});
+			$image.removeClass('unloaded');
+
+			if(doNext && $article.next()){
+				module.showArticleImage($article.next(), false);
+			}
 		},
 
 		gotoArticle: function($article){
 			var filter = $article.attr('data-filters');
 			var album = $article.attr('album');
 			var id = $article.attr('id');
+
+			module.showArticleImage($article, true);
 
 			$('body').scrollTop(0);
 			window.location.hash = '/' + archiveURL + '/' + filter + '/' + id;
@@ -133,15 +148,16 @@
 
 		listAlbums: function(filter, album, image){
 			var $albumList = module.$albums.find('*[data-filter="' + filter + '"]');
+			var $firstAlbum = $albumList.find('li').first();
 
-			module.hideAlbums();
+			// module.hideAlbums();
 			module.initPhotography();
 			module.nav.activate(filter);
 
 			$albumList.addClass('show');
 
-			if(!album && filter && module.current.filter != filter){
-				var hash= $albumList.find('li').first().find('a').attr('href');
+			if(!album && filter && module.current.filter != filter && $firstAlbum.length > 0){
+				var hash= $firstAlbum.find('a').attr('href');
 				var split = hash.split('/');
 				var filter = split[2];
 				var album = split[3];
@@ -163,6 +179,8 @@
 		},
 
 		hideAlbums: function(){
+			module.$images.empty();
+			module.nav.clear();
 			module.$albums.find('*[data-filter]').removeClass('show');
 		},
 
@@ -181,7 +199,6 @@
 			module.resetScroll();
 			module.$images.empty();
 
-			$imageContainer.empty();
 			$imageContainer.load(rootURL + 'albums/' + filter + '/' + album, function($el){
 				var $images = $(this).find('.photo');
 				var imageMenuLinks = [];
@@ -194,6 +211,7 @@
 					imageMenuLinks.push('<li class="list__item" data-image="' + id + '"><a class="list__link" href="' + href + '">' + name + '</a></li>');
 				});
 
+				module.$images.empty();
 				module.$images.append(imageMenuLinks.join(''));
 				module.showImage(image);
 
@@ -207,17 +225,44 @@
 			$imageContainer.attr('data-album', album);
 		},
 
-		showImage: function(image){
-			module.scrollTo(image);
-			module.current.image = image;
+		showImage: function(id){
+			var $listItem;
 
-			if(image === undefined){
-				image = module.$images.find('li:first-child').attr('data-image');
+			module.scrollTo(id);
+			module.current.id = id;
+
+			if(id === undefined){
+				id = module.$images.find('li:first-child').attr('data-image');
 			}
 
 			module.$images.find('.active').removeClass('active');
-			var $image = module.$images.find('li[data-image = "' + image + '"]');
-			$image.addClass('active');
+			$listItem = module.$images.find('li[data-image = "' + id + '"]');
+			$listItem.addClass('active');
+
+			module.loadImage(id, true);
+		},
+
+		loadImage: function(id, doOthers){
+			var $photo, $img;
+
+			$photo = module.$scrollContainer.find('#' + id);
+			$img = $photo.find('img');
+
+			if($img.is('[data-src]')){
+				// $img.css('visibilty', 'hidden').load(function() {
+				// 	$img.fadeIn(1000);
+				// });
+				$img.attr({src: $img.attr('data-src')});
+			}
+
+			if(doOthers && $photo.prev()){
+				module.loadImage($photo.prev().attr('id'), false);
+			}
+
+			if(doOthers && $photo.next()){
+				module.loadImage($photo.next().attr('id'), false);
+			}
+	
 		},
 
 		gotoImage: function($image){

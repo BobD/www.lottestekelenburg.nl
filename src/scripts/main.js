@@ -15,7 +15,7 @@ requirejs.config({
 });
 
 require([
-	'domReady!',
+	'domReady',
 	'text!albums.json',
 	'jquery',
 	'routes',
@@ -24,25 +24,29 @@ require([
 	'content',
 	'fastclick'
 	], function(domReady, albums, $, routes, archive, information, content, FastClick) {
-		
-		var albums = JSON.parse(albums);
 
-		$('html').removeClass('no-js').addClass('js');
+		domReady(function () {
+			var albums = (albums) ? JSON.parse(albums) : {};
 
-		archive.init({
-			$container: $('.main__section--archive')
-		});
+			$('html').removeClass('no-js').addClass('js');
 
-		content.init({
-			$container: $('.main__section--content'),
-			albums: albums
-		});
+			archive.init({
+				$container: $('.main__section--archive')
+			});
 
-		information.init({
-			$container: $('.main__section--information')
-		});
+			content.init({
+				$container: $('.main__section--content'),
+				albums: albums
+			});
 
-		routes.init({});
+			information.init({
+				$container: $('.main__section--information')
+			});
 
-		FastClick.attach(document.body);
+			routes.init({});
+
+			FastClick.attach(document.body);
+	  });
+
+
 });
