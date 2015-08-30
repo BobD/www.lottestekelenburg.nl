@@ -21,9 +21,8 @@ require([
 	'routes',
 	'archive',
 	'information',
-	'content',
-	'fastclick'
-	], function(domReady, albums, $, routes, archive, information, content, FastClick) {
+	'content'
+	], function(domReady, albums, $, routes, archive, information, content) {
 
 		domReady(function () {
 			var albums = (albums) ? JSON.parse(albums) : {};
@@ -45,7 +44,7 @@ require([
 
 			routes.init({});
 
-			FastClick.attach(document.body);
+			// FastClick.attach(document.body);
 	  });
 
 

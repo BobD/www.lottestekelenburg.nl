@@ -77,6 +77,7 @@ $main-content-nav-width: 150px;
 			.section{
 
 				&[data-section="intro"]{
+					max-height: 600px;
 
 					.photo{
 						img{

@@ -154,6 +154,7 @@
 			module.initPhotography();
 			module.nav.activate(filter);
 
+			module.$albums.find('.list__category.show').removeClass('show');
 			$albumList.addClass('show');
 
 			if(!album && filter && module.current.filter != filter && $firstAlbum.length > 0){

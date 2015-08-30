@@ -7,22 +7,29 @@
 		color: white;
 
 		.slideout__toggle{
-			display: inline-block;
-			vertical-align: middle;
-			width: 2.5em;
-			margin-right: .5em;
-			float: right;
-    		margin-top: .5em;
+		    display: inline-block;
+		    vertical-align: middle;
+		    width: 2em;
+		    margin-right: 0;
+		    float: right;
+		    margin-top: .4em;
 		}
 
 		.slideout__toggle-close{
 			display: none;
 		}
 
-		.main__section__body__title{
+		.main__section__body__title,
+		.main__section__body__sub-title{
 			display: inline-block;
 			vertical-align: middle;
-			font-size: 1.8em;
+			font-size: 1.4em;
+		}
+
+
+		.main__section__body__sub-title{
+			opacity: .7;
+			line-height: 1em;
 		}
 
 		.main__section__header{
